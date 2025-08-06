@@ -1,0 +1,37 @@
+const rocketData = {
+    chang_e: {
+        name: "嫦娥系列探测器",
+        keywords: ["嫦娥奔月", "月球探测", "中国探月工程"],
+        bvid: "BV1cx411Y7aM"
+    },
+    yu_tu: {
+        name: "玉兔号月球车",
+        keywords: ["玉兔", "月球车", "巡视探测"],
+        bvid: "BV1eJ411R7Bb"
+    },
+    que_qiao: {
+        name: "鹊桥中继星",
+        keywords: ["鹊桥", "中继通信", "月球背面"],
+        bvid: "BV1vN411R7Du"
+    },
+    tian_wen: {
+        name: "天问系列",
+        keywords: ["天问", "火星探测", "行星探测"],
+        bvid: "BV19e411s7yT"
+    },
+    wu_kong: {
+        name: "悟空号",
+        keywords: ["悟空", "暗物质", "空间探测"],
+        bvid: "BV1GB4y1K7oj"
+    },
+    zhu_rong: {
+        name: "祝融号",
+        keywords: ["祝融", "火星车", "火星探测"],
+        bvid: "BV1xo4y1y7Nd"
+    },
+    space_spirit: {
+        name: "中国航天精神",
+        keywords: ["航天精神", "特别能吃苦", "特别能战斗", "特别能攻关", "特别能奉献"],
+        bvid: "BV17g4y1R7uK"
+    }
+};

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国神话地理坐标可视化</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入高德地图 JavaScript API -->
+    <script src="https://webapi.amap.com/maps?v=2.0&key=5a31a1a2c83a12a4afb2a90905e4950e&plugin=AMap.ToolBar,AMap.Scale,AMap.OverView,AMap.Geolocation"></script>
+    <link rel="stylesheet" href="./神话分布地图.css">
+</head>
+
+<body class="bg-gray-50">
+    <!-- 新增关闭按钮 -->
+    <button class="close-btn" id="closeBtn">返回主页</button>
+
+    <div id="map-container">
+        <div id="map"></div>
+        <div id="legend" class="legend"></div>
+    </div>
+    <script src="./神话分布地图.js"></script>
+</body>
+</html>    

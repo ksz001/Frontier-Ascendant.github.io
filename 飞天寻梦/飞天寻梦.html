@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>飞天梦想</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> 
+    <link rel="stylesheet" href="https://chinese-fonts-cdn.deno.dev/packages/dymh/dist/DouyinSansBold/result.css">
+    <!-- 引入表格、图标、字体库 -->
+    <link rel="stylesheet" href="./飞天寻梦.css">
+</head>
+
+<body>
+    <!-- 切页加载动画部分 -->
+    <div class="loading-animation" id="loading-animation">
+        <div class="loading-container">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    
+    <!-- 台灯拉绳导航部分· -->
+    <div class="lamp-pull" id="lamp-pull">
+        <div class="lamp-cord"></div>
+        <div class="lamp-handle"></div>
+        <div class="lamp-menu" id="lamp-menu">
+            <a href="#" class="lamp-link" data-page="home"><i class="fas fa-home"></i>首页</a>
+            <a href="#" class="lamp-link" data-page="journey"><i class="fas fa-scroll"></i>历史画卷</a>
+            <a href="#" class="lamp-link" data-page="data"><i class="fas fa-chart-bar"></i>数据对比</a>
+            <a href="#" class="lamp-link" data-page="achievements"><i class="fas fa-medal"></i>古往今来的约定</a>
+        </div>
+    </div>
+    
+    <!-- 移动端菜单按钮 -->
+    <div class="hamburger" id="hamburger">☰</div>
+
+    <!-- 返回顶部按钮 -->
+    <div class="back-to-top" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- 模态窗口 -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-content">
+            <div class="close-modal" id="close-modal">×</div>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- 分页内容容器 -->
+    <div class="page-container">
+        <!-- 首页部分 -->
+        <div class="page active" id="home-page">
+            <section class="anime-section">
+                <div class="anime-content">
+                    <div class="title-with-logo">
+                        <img src="./images/LOGO.png" alt="飞天梦想logo" class="site-logo">
+                        <h1>飞天寻梦</h1>
+                    </div>
+                    <p>从古代神话到现代航天，中华民族对天空的不懈追求与探索</p>
+                    <button class="anime-button" id="explore-button">开始探索</button>
+                </div>
+                <div class="sliders">
+                    <div class="slider-container" id="slider1">
+                        <div class="slider-track">
+                            <div class="slide">
+                                <img src="./images/1嫦娥奔月.webp" alt="嫦娥奔月">
+                            </div>
+                            <div class="slide">
+                                <img src="./images/1万户飞天.webp" alt="万户飞天">
+                            </div>
+                            <div class="slide">
+                                <img src="./images/1精卫填海.webp" alt="精卫填海">
+                            </div>
+                            <div class="slide">
+                                <img src="./images/1夸父追日.webp" alt="夸父追日">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-container" id="slider2">
+                        <div class="slider-track">
+                            <div class="slide">
+                                <img src="./images/1东方红一号.jpg" alt="东方红一号">
+                            </div>
+                            <div class="slide">
+                                <img src="./images/1神舟五号.jpg" alt="神舟五号">
+                            </div>
+                            <div class="slide">
+                                <img src="./images/1天问一号.jpg" alt="天问一号">
+                            </div>
+                            <div class="slide">
+                                <img src="./images/1嫦娥六号.webp" alt="嫦娥六号">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slider-container" id="slider3">
+                        <div class="slider-track">
+                            <div class="slide">
+                                <img src="./images/1后羿射日.webp" alt="后羿射日">
+                            </div>
+                            <div class="slide">
+                                <img src="./images/1女娲补天.webp" alt="女娲补天">
+                            </div>
+                            <div class="slide">
+                                <img src="./images/敦煌飞天.jpg" alt="敦煌飞天">
+                            </div>
+                            <div class="slide">
+                                <img src="./images/鲁班木鸢.png" alt="鲁班木鸢">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 历史画卷页 -->
+        <div class="page" id="journey-page">
+            <div class="container">
+                <div class="section journey-section-bg">
+                    <h2><i class="fas fa-scroll"></i>史书的见证</h2>                  
+                    <div class="timeline-container">
+                        <!-- 卷轴内容容器 -->
+                        <div class="scroll-content-container">
+                            <!-- 神话传说卷轴 -->
+                            <div class="scroll-box" id="mythScroll">
+                                <div class="scroll-content">
+                                    <div class="scroll-item">
+                                        <h3>嫦娥奔月</h3>
+                                        <img src="./images/嫦娥奔月.jpg" alt="嫦娥奔月" class="modal-trigger">
+                                        <p>“嫦娥奔月”的神话源自古人对星辰的崇拜，据现存文字记载最早出现于《淮南子》等古书</p>
+                                        <p><strong>时期：</strong>古代神话</p>
+                                    </div>
+                                    <div class="scroll-item">
+                                        <h3>后羿射日</h3>
+                                        <img src="./images/后羿射日.jpg" alt="后羿射日" class="modal-trigger">
+                                        <p>出自《山海经》，天上有十个太阳，后羿用弓射下九个。这个故事反映了古人对天空的崇拜。</p>
+                                        <p><strong>时期：</strong>古代神话</p>
+                                    </div>
+                                    <div class="scroll-item">
+                                        <h3>女娲补天</h3>
+                                        <img src="./images/女娲补天.jpg" alt="女娲补天" class="modal-trigger">
+                                        <p>记载于《淮南子》，女娲炼五色石修补苍天。这个创世神话展现了古人对天地结构的想象。</p>
+                                        <p><strong>时期：</strong>古代神话</p>
+                                    </div>
+                                    <div class="scroll-item">
+                                        <h3>牛郎织女</h3>
+                                        <img src="./images/牛郎织女.jpg" alt="牛郎织女"  class="modal-trigger">
+                                        <p>最早见于《诗经》，讲述牛郎与织女被银河分隔，每年农历七月初七才能在鹊桥相会。</p>
+                                        <p><strong>时期：</strong>古代神话</p>
+                                    </div>
+                                </div>
+                                <div class="scroll-handle right"></div>
+                            </div>
+                            
+                            <!-- 飞天故事卷轴 -->
+                            <div class="scroll-box" id="storyScroll">
+                                <div class="scroll-content">
+                                    <div class="scroll-item">
+                                        <h3>万户飞天</h3>
+                                        <img src="./images/万户飞天.jpg" alt="万户飞天">
+                                        <p>明朝初年，万户使用火箭尝试把自己发射到天上，试图借助火箭推力升空。</p>
+                                        <p><strong>时期：</strong>14世纪末</p>
+                                    </div>
+                                    <div class="scroll-item">
+                                        <h3>敦煌飞天</h3>
+                                        <img src="./images/敦煌飞天.jpg" alt="敦煌飞天">
+                                        <p>在佛教初传不久的魏晋南北朝时，曾经把壁画中的飞仙亦称为飞天，飞天、飞仙不分。</p>
+                                        <p><strong>时期：</strong>4-14世纪</p>
+                                    </div>
+                                    <div class="scroll-item">
+                                        <h3>列子御风</h3>
+                                        <img src="./images/列子御风.jpg" alt="列子御风">
+                                        <p>《列子·黄帝篇》记载，列子能"御风而行"，轻飘飘地在空中飞行十五天后返回。</p>
+                                        <p><strong>时期：</strong>战国时期</p>
+                                    </div>
+                                    <div class="scroll-item">
+                                        <h3>萧史弄玉</h3>
+                                        <img src="./images/萧史弄玉.jpg" alt="萧史弄玉">
+                                        <p>汉代《列仙传》记载，秦穆公时萧史善吹箫，后与穆公女弄玉结为夫妻，最终乘龙凤升天而去成为神仙眷侣。</p>
+                                        <p><strong>时期：</strong>春秋时期</p>
+                                    </div>
+                                </div>
+                                <div class="scroll-handle right"></div>
+                            </div>
+
+                            <!-- 飞天发明卷轴 -->
+                            <div class="scroll-box" id="inventionScroll">
+                                <div class="scroll-content">
+                                    <div class="scroll-item"> 
+                                        <h3>风筝</h3>
+                                        <img src="./images/风筝.jpg" alt="风筝">
+                                        <p>春秋时期发明，最初称为"木鸢"或"纸鸢"。汉代用于军事通信，唐宋时期发展为娱乐工具，明代已有载人风筝的记载。</p>
+                                        <p><strong>时期：</strong>公元前5世纪</p>
+                                    </div>
+                                    <div class="scroll-item">
+                                        <h3>火箭</h3> 
+                                        <img src="./images/火箭.jpg" alt="火箭"> 
+                                        <p>宋代发明的火药武器，元代发展出多级火箭技术。明代《武备志》记载了"火龙出水"等多级火箭武器。</p> 
+                                        <p><strong>时期：</strong>12世纪</p> 
+                                    </div> 
+                                    <div class="scroll-item"> 
+                                        <h3>孔明灯</h3> 
+                                        <img src="./images/孔明灯.jpg" alt="孔明灯"> 
+                                        <p>相传三国时期诸葛亮发明，利用热空气升空原理制作。最初用于军事信号传递，后成为民间节庆活动的重要元素。</p> 
+                                        <p><strong>时期：</strong>3世纪</p> 
+                                    </div> 
+                                    <div class="scroll-item"> 
+                                        <h3>鲁班木鸢</h3> 
+                                        <img src="./images/鲁班木鸢.png" alt="鲁班木鸢"> 
+                                        <p>据《墨子·鲁问》记载，春秋时期鲁国工匠鲁班用竹木制作了一只大鸟(鸢)，能在空中飞行三日不落。</p> 
+                                        <p><strong>时期：</strong>公元前5世纪</p> 
+                                    </div> 
+                                    </div>
+                                    <div class="scroll-handle right"></div> 
+                            </div>
+                            <!-- 现代航天卷轴 -->
+                            <div class="scroll-box" id="modernScroll">
+                            <div class="scroll-content">
+                            <div class="scroll-item">
+                                <h3>东方红一号</h3>
+                                <img src="./images/东方红一号.jpg" alt="东方红一号">
+                                <p>中国第一颗人造地球卫星，于1970年4月24日发射成功，使中国成为继苏、美、法、日之后世界上第五个独立研制并发射人造地球卫星的国家。</p>
+                                <p><strong>时期：</strong>1970年</p>
+                            </div>
+                            <div class="scroll-item">
+                                <h3>神舟五号</h3>
+                                <img src="./images/神舟五号.jpg" alt="神舟五号">
+                                <p>中国首次载人航天飞行任务，航天员杨利伟于2003年10月15日进入太空，使中国成为世界上第三个能够独立开展载人航天活动的国家。</p>
+                                <p><strong>时期：</strong>2003年</p>
+                            </div>
+                            <div class="scroll-item">
+                                <h3>嫦娥探月</h3>
+                                <img src="./images/嫦娥一号.jpg" alt="嫦娥探月">
+                                <p>中国月球探测工程，已成功实现月球背面软着陆(嫦娥四号)和月球样品返回(嫦娥五号)，开启了中国人探索月球的新篇章。</p>
+                                <p><strong>时期：</strong>2007年至今</p>
+                            </div>
+                            <div class="scroll-item">
+                                <h3>天问一号</h3>
+                                <img src="./images/天问一号.jpg" alt="天问一号">
+                                <p>中国首次火星探测任务，一次实现"绕、着、巡"三大目标，使中国成为第二个成功在火星表面着陆探测器的国家。</p>
+                                <p><strong>时期：</strong>2021年</p>
+                            </div>
+                            </div>
+                            <div class="scroll-handle right"></div>
+                            </div>
+                            </div>
+        
+                            <!-- 时间轴 -->
+                            <div class="timeline">
+                            <div class="timeline-line"></div>
+        
+                            <!-- 时间段 -->
+                            <div class="timeline-period" id="mythPeriod" style="left: 0%; width: 20%;"></div>
+                            <div class="timeline-period" id="storyPeriod" style="left: 20%; width: 30%;"></div>
+                            <div class="timeline-period" id="inventionPeriod" style="left: 50%; width: 20%;"></div>
+                            <div class="timeline-period" id="modernPeriod" style="left: 70%; width: 30%;"></div>
+                            
+                            <!-- 时间点 -->
+                            <div class="timeline-point" id="mythPoint" style="left: 10%;"></div>
+                            <div class="timeline-point" id="storyPoint" style="left: 35%;"></div>
+                            <div class="timeline-point" id="inventionPoint" style="left: 60%;"></div>
+                            <div class="timeline-point" id="modernPoint" style="left: 85%;"></div>
+                            
+                            <!-- 时间标签 -->
+                            <div class="timeline-label" style="left: 10%;">古代神话<br>(公元前3000年-公元前221年)</div>
+                            <div class="timeline-label" style="left: 35%;">飞天故事<br>(公元前221年-14世纪)</div>
+                            <div class="timeline-label" style="left: 60%;">飞天发明<br>(公元前5世纪-18世纪)</div>
+                            <div class="timeline-label" style="left: 85%;">现代航天<br>(1970年-至今)</div>
+                            </div>
+
+                            <!-- 底部卡片部分 -->
+                            <div class="horizontal-nav">
+                                <div class="nav-card" onclick="window.location.href = '火箭典藏阁.html'">
+                                    <div class="nav-card-image" style="background-image: url('./images/火箭典藏阁.webp')"></div>
+                                    <div class="nav-card-content">
+                                        <h3>火箭典藏阁</h3>
+                                        <p>点击跳转到火箭典藏阁页面</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="nav-card" onclick="window.location.href = '神话分布地图.html'">
+                                    <div class="nav-card-image" style="background-image: url('./images/神话分布地图.webp')"></div>
+                                    <div class="nav-card-content">
+                                        <h3>神话分布地图</h3>
+                                        <p>点击跳转到神话分布地图页面</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="nav-card" onclick="window.location.href = '神话分布地图.html'">
+                                    <div class="nav-card-image" style="background-image: url('./images/未完待续.jpg')"></div>
+                                    <div class="nav-card-content">
+                                        <h3>未完待续</h3>
+                                        <p>期待你的加入，让我们共同来开发无穷宇宙！</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="nav-card" onclick="window.location.href = '神话分布地图.html'">
+                                    <div class="nav-card-image" style="background-image: url('./images/未完待续.jpg')"></div>
+                                    <div class="nav-card-content">
+                                        <h3>未完待续</h3>
+                                        <p>期待你的加入，让我们共同来开发无穷宇宙！</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            <footer>
+            <p>© 2025 本页制作灵感来自指导老师</p>
+            </footer>
+            </div>
+        </div>
+
+
+        <!-- 航天数据页 -->
+        <div class="page" id="data-page">
+            <div class="container">
+                <div class="section data-section-bg">
+                    <h2>中美俄航天数据对比分析</h2>
+                    <br>
+                    <!-- Power BI报表容器 -->
+                    <div class="powerbi-container">
+                        <iframe title="航空航天数据可视化" width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=c31f8729-2749-4f58-a98e-9d02e7c78d4a&autoAuth=true&ctid=26ccfbb4-7816-4f43-a236-b6fffb84cfc1" frameborder="0" allowFullScreen="true"></iframe>
+                    </div>
+                    <h2>数据聚类分析</h2>
+                    <!-- 图表容器 -->
+                    <div class="chart-container">
+                        <div class="chart-box">
+                            <h3>中美俄火箭发射数量聚类结果饼状图</h3>
+                        <div class="chart-wrapper">
+                        <div id="pieChart" style="width: 100%; height: 100%;"></div>
+                    </div>
+                    <p>1. 中国火箭发射成本聚类分析
+                    中国的火箭发射成本呈现 两簇为主，一簇重复，低成本簇可能对应小型火箭或常规任务，高成本簇可能对应特殊任务或早期研发阶段的发射。
+                    </p>
+                    <p>2. 美国火箭发射成本聚类分析
+                    美国的发射成本呈现 跨度极大的三簇，尤其是高成本簇远高于其他两簇。
+                    低成本簇可能代表成熟商业火箭，中等成本簇可能对应政府主导的常规任务，极高成本簇可能涉及高复杂度任务。</p>
+                    </div>
+                    
+                    <div class="chart-box">
+                        <h3>中美俄火箭发射数量聚类结果柱状图</h3>
+                        <div class="chart-wrapper">
+                        <div id="barChart" style="width: 100%; height: 100%;"></div>
+                    </div>
+                    <p>3. 俄罗斯火箭发射成本聚类分析
+                    俄罗斯的发射成本呈现 两簇为主、一簇重复，低成本簇可能对应小型火箭或成熟技术发射（联盟号）高成本簇可能对应中型火箭或特定任务。
+                    </p>
+                    <p>4. 三国对比与总结
+                    成本分布差异：
+                    中国：成本分层，低、中成本簇占比可能较高，并且出现重复，反映规模化和技术成熟度。
+                    美国：成本跨度大，极端值突出，体现商业创新与高端任务并存。
+                    俄罗斯：成本集中在中等偏高区间，低成本簇较少，可能受发射场地的成本和发射模式影响。</p>
+                    </div>
+                </div>
+            </div>
+            <footer>
+            <p>© 2025 飞天梦想：从古代幻想到现代航天 | 数据来源：中国国家航天局、NASA、Roscosmos、UCS卫星数据库</p>
+            </footer>
+            </div>
+    </div>
+        
+        <!-- 现代成就页 -->
+                <div class="page" id="achievements-page">
+                    <div class="container">
+                        <div class="section">
+                            <h2><i class="fas fa-rocket"></i> 赋予神话重归于视野</h2>
+                            <p>中国航天器的命名蕴含着深厚的文化底蕴，将古老神话与现代科技完美融合</p>
+                            
+                            <div class="rocket-cards-container">
+                                <!-- 嫦娥系列 -->
+                                <div class="rocket-card" data-rocket="chang_e">
+                                    <div class="rocket-image" style="background-image: url('./images/1嫦娥六号.webp')"></div>
+                                    <div class="rocket-content">
+                                        <h3>嫦娥系列</h3>
+                                        <p>源自"嫦娥奔月"神话，中国探月工程的代号</p>
+                                        <div class="rocket-details">
+                                            <span><i class="fas fa-calendar-alt"></i> 2007年首飞</span>
+                                            <span><i class="fas fa-moon"></i> 月球探测</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 玉兔号 -->
+                                <div class="rocket-card" data-rocket="yu_tu">
+                                    <div class="rocket-image" style="background-image: url('./images/玉兔号.webp')"></div>
+                                    <div class="rocket-content">
+                                        <h3>玉兔号</h3>
+                                        <p>嫦娥的月宫伙伴，中国首辆月球车</p>
+                                        <div class="rocket-details">
+                                            <span><i class="fas fa-calendar-alt"></i> 2013年着陆</span>
+                                            <span><i class="fas fa-robot"></i> 月球巡视器</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 鹊桥中继星 -->
+                                <div class="rocket-card" data-rocket="que_qiao">
+                                    <div class="rocket-image" style="background-image: url('./images/鹊桥中继星.jpg')"></div>
+                                    <div class="rocket-content">
+                                        <h3>鹊桥中继星</h3>
+                                        <p>源自"鹊桥相会"传说，为嫦娥四号提供中继通信</p>
+                                        <div class="rocket-details">
+                                            <span><i class="fas fa-calendar-alt"></i> 2018年发射</span>
+                                            <span><i class="fas fa-satellite"></i> 通信中继</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 天问系列 -->
+                                <div class="rocket-card" data-rocket="tian_wen">
+                                    <div class="rocket-image" style="background-image: url('./images/1天问一号.jpg')"></div>
+                                    <div class="rocket-content">
+                                        <h3>天问系列</h3>
+                                        <p>源自屈原长诗《天问》，中国行星探测计划</p>
+                                        <div class="rocket-details">
+                                            <span><i class="fas fa-calendar-alt"></i> 2020年首飞</span>
+                                            <span><i class="fas fa-globe-asia"></i> 火星探测</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 悟空号 -->
+                                <div class="rocket-card" data-rocket="wu_kong">
+                                    <div class="rocket-image" style="background-image: url('./images/悟空号.jpg')"></div>
+                                    <div class="rocket-content">
+                                        <h3>悟空号</h3>
+                                        <p>源自《西游记》孙悟空，暗物质粒子探测卫星</p>
+                                        <div class="rocket-details">
+                                            <span><i class="fas fa-calendar-alt"></i> 2015年发射</span>
+                                            <span><i class="fas fa-star"></i> 暗物质探测</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- 祝融号 -->
+                                <div class="rocket-card" data-rocket="zhu_rong">
+                                    <div class="rocket-image" style="background-image: url('./images/祝融号.webp')"></div>
+                                    <div class="rocket-content">
+                                        <h3>祝融号</h3>
+                                        <p>源自火神祝融，中国首辆火星车</p>
+                                        <div class="rocket-details">
+                                            <span><i class="fas fa-calendar-alt"></i> 2021年着陆</span>
+                                            <span><i class="fas fa-fire"></i> 火星探测</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rocket-card wide-card" data-rocket="space_spirit" style="grid-column: span 3; display: grid; grid-template-columns: 2fr 1fr; gap: 20px;">
+                                    <div style="padding: 20px; display: flex; flex-direction: column; justify-content: center;">
+                                        <h3 style="font-size: 1.8em; margin-bottom: 15px; color: #1e3c72;">中国航天精神</h3>
+                                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                                            <div>
+                                                <h4><i class="fas fa-fist-raised"></i> 特别能吃苦</h4>
+                                                <p>航天人常年奋战在戈壁荒漠、深山峡谷，克服恶劣环境，默默奉献青春。</p>
+                                                
+                                                <h4><i class="fas fa-shield-alt"></i> 特别能战斗</h4>
+                                                <p>面对技术封锁和重重困难，航天人迎难而上，创造了多项世界第一。</p>
+                                            </div>
+                                            <div>
+                                                <h4><i class="fas fa-cogs"></i> 特别能攻关</h4>
+                                                <p>从"两弹一星"到载人航天，突破了一项项关键技术瓶颈。</p>
+                                                
+                                                <h4><i class="fas fa-heart"></i> 特别能奉献</h4>
+                                                <p>一代代航天人淡泊名利、甘为人梯，将个人理想融入国家事业。</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div style="background-image: url('./images/航天文化.jpg'); background-size: cover; background-position: center; border-radius: 0 8px 8px 0;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <footer>
+                            <p>© 2025 向着未来的无限宇宙前进！</p>
+                        </footer>
+                    </div>
+                </div>
+<script src="./飞天寻梦.js"></script>
+</body>
+</html>
